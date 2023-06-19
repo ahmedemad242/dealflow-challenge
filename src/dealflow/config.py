@@ -12,6 +12,7 @@ SQLITE_PROD = "sqlite:///" + str(HERE / "dealflow_prod.db")
 class Config:
     """Base configuration."""
 
+    BCRYPT_LOG_ROUNDS = 4
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     SWAGGER_UI_DOC_EXPANSION = "list"
@@ -35,6 +36,7 @@ class DevelopmentConfig(Config):
 class ProductionConfig(Config):
     """Production configuration."""
 
+    BCRYPT_LOG_ROUNDS = 13
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", SQLITE_PROD)
     PRESERVE_CONTEXT_ON_EXCEPTION = True
 
