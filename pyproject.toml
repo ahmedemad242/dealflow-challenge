@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "dealflow-challenge"
+name = "dealflow"
 version = "0.1.0"
 description = "A simple Freelance API using Flask and its front-end using React"
 authors = ["Ahmed Emad <50369848+ahmedemad242@users.noreply.github.com>"]
 readme = "README.md"
-packages = [{include = "dealflow_challenge"}]
+packages = [{include = "dealflow", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
@@ -15,6 +15,9 @@ python-dotenv = "^1.0.0"
 flask-restx = "^1.1.0"
 flask-sqlalchemy = "^3.0.3"
 sqlalchemy = "^2.0.16"
+psycopg2-binary = "^2.9.6"
+flask-bcrypt = "^1.0.1"
+cryptography = "^41.0.1"
 
 
 [tool.poetry.group.dev.dependencies]
