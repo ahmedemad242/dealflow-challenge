@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "dealflow-challenge"
+name = "dealflow"
 version = "0.1.0"
 description = "A simple Freelance API using Flask and its front-end using React"
 authors = ["Ahmed Emad <50369848+ahmedemad242@users.noreply.github.com>"]
 readme = "README.md"
-packages = [{include = "dealflow_challenge"}]
+packages = [{include = "dealflow", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
