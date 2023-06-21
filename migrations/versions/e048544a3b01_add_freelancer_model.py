@@ -1,8 +1,8 @@
 """add freelancer model
 
-Revision ID: 7dd5183b6081
+Revision ID: e048544a3b01
 Revises:
-Create Date: 2023-06-19 12:57:10.444204
+Create Date: 2023-06-21 07:51:00.801665
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7dd5183b6081'
+revision = 'e048544a3b01'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,8 +21,9 @@ def upgrade():
     op.create_table('freelancer',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=255), nullable=False),
+    sa.Column('password_hash', sa.String(length=255), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
-    sa.Column('publicId', sa.String(length=36), nullable=True),
+    sa.Column('public_id', sa.String(length=36), nullable=True),
     sa.Column('firstname', sa.String(length=255), nullable=True),
     sa.Column('lastname', sa.String(length=255), nullable=True),
     sa.Column('date_of_birth', sa.Date(), nullable=True),
@@ -31,7 +32,7 @@ def upgrade():
     sa.Column('deleted_at', sa.TIMESTAMP(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
-    sa.UniqueConstraint('publicId'),
+    sa.UniqueConstraint('public_id'),
     sa.UniqueConstraint('username')
     )
     # ### end Alembic commands ###
