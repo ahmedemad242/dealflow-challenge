@@ -16,7 +16,7 @@ class Freelancer(db.Model):
     Fields:
         id              -   INT         -   Primary key for the freelancer.
         username        -   VARCHAR     -   Freelancer username for login.
-        password        -   VARCHAR     -   Freelancer password for login.
+        password_hash    -   VARCHAR     -   Freelancer password for login.
         email           -   VARCHAR     -   Freelancer email address.
         firstname       -   VARCHAR     -   Freelancer first name.
         lastname        -   VARCHAR     -   Freelancer last name.
@@ -32,9 +32,9 @@ class Freelancer(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), unique=True, nullable=False)
-    password = db.Column(db.String(255), nullable=False)
+    password_hash = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
-    publicId = db.Column(db.String(36), unique=True, default=lambda: str(uuid4()))
+    public_id = db.Column(db.String(36), unique=True, default=lambda: str(uuid4()))
     firstname = db.Column(db.String(255))
     lastname = db.Column(db.String(255))
     date_of_birth = db.Column(db.Date)
@@ -116,15 +116,15 @@ class Freelancer(db.Model):
         return freelancer
 
     @classmethod
-    def findByPublicId(cls, publicId):
+    def findBypublicId(cls, public_id):
         """
-        Returns freelancer data given a valid publicId
+        Returns freelancer data given a valid public_id
         -----
         parameters:
-            publicId - String
+            public_id - String
         """
 
-        freelancer = cls.query.filter_by(publicId=publicId).first()
+        freelancer = cls.query.filter_by(public_id=public_id).first()
         return freelancer
 
     @classmethod
@@ -154,7 +154,7 @@ class Freelancer(db.Model):
 
         log_rounds = current_app.config.get("BCRYPT_LOG_ROUNDS")
         hash_bytes = bcrypt.generate_password_hash(password, log_rounds)
-        self.passwordHash = hash_bytes.decode("utf-8")
+        self.password_hash = hash_bytes.decode("utf-8")
 
     def checkPassword(self, password):
         """
@@ -164,4 +164,4 @@ class Freelancer(db.Model):
             password - String
         """
 
-        return bcrypt.check_password_hash(self.passwordHash, password)
+        return bcrypt.check_password_hash(self.password_hash, password)
