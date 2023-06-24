@@ -1,9 +1,9 @@
-import random
 import click
 from flask import Blueprint
 from faker import Faker
 from dealflow import db
 from dealflow.models.freelancer import Freelancer
+from datetime import datetime
 
 fake_bp = Blueprint("fake", __name__)
 faker = Faker()
@@ -20,7 +20,9 @@ def freelancers(num):
             username=faker.user_name(),
             firstname=faker.first_name(),
             lastname=faker.last_name(),
-            date_of_birth=faker.date_time_this_year(),
+            date_of_birth=faker.date_between_dates(
+                date_start=datetime(1990, 1, 1), date_end=datetime(2005, 12, 31)
+            ),
         )
         db.session.add(freelancer)
 
