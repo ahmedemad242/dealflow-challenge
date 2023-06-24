@@ -19,6 +19,12 @@ class Config:
     RESTX_MASK_SWAGGER = False
     JSON_SORT_KEYS = False
 
+    # API documentation
+    APIFAIRY_TITLE = "dealflow API"
+    APIFAIRY_VERSION = "1.0"
+    APIFAIRY_UI = os.environ.get("DOCS_UI", "elements")
+    APIFAIRY_TAGS = ["freelancers"]
+
 
 class TestingConfig(Config):
     """Testing configuration."""
