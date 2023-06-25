@@ -29,6 +29,7 @@ class Config:
 class TestingConfig(Config):
     """Testing configuration."""
 
+    SERVER_NAME = "localhost:5000"
     TESTING = True
     SQLALCHEMY_DATABASE_URI = SQLITE_TEST
 
@@ -54,4 +55,4 @@ ENV_CONFIG_DICT = dict(
 
 def get_config(config_name):
     """Retrieve environment configuration settings."""
-    return ENV_CONFIG_DICT.get(config_name, ProductionConfig)
+    return ENV_CONFIG_DICT.get(config_name, DevelopmentConfig)
