@@ -33,7 +33,6 @@ class FreelancerSchema(ma.SQLAlchemySchema):
 
     def calculate_age(self, obj):
         date = obj.date_of_birth
-        print(date)
         if date:
             today = date.today()
             age = today.year - date.year
