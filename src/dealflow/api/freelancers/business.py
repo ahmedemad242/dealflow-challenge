@@ -1,3 +1,8 @@
+"""
+Business logic for the Freelancer API
+"""
+
+from flask import abort
 from dealflow.models.freelancer import Freelancer
 
 
@@ -15,6 +20,12 @@ def retrievePaginatedFreelancers(
         phone - String
     """
 
+    if offset < 0 or limit < 0:
+        abort(400, "Invalid pagination parameters")
+
+    if limit > 25:
+        limit = 25
+
     query = Freelancer.query
 
     if firstname:
@@ -28,9 +39,11 @@ def retrievePaginatedFreelancers(
     freelancers = query.offset(offset).limit(limit).all()
 
     return {
-        "offset": offset,
-        "limit": limit,
-        "count": len(freelancers),
-        "total": total,
+        "pagination": {
+            "offset": offset,
+            "limit": limit,
+            "count": len(freelancers),
+            "total": total,
+        },
         "data": freelancers,
     }
