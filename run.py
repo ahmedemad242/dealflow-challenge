@@ -3,7 +3,9 @@ import os
 
 from dealflow import create_app, db
 from dealflow.models.freelancer import Freelancer
+from dotenv import load_dotenv
 
+load_dotenv()
 application = app = create_app(os.getenv("FLASK_ENV", "production"))
 
 
@@ -11,7 +13,7 @@ application = app = create_app(os.getenv("FLASK_ENV", "production"))
 def shell():
     return {
         "db": db,
-        "User": Freelancer,
+        "freelancer": Freelancer,
     }
 
 

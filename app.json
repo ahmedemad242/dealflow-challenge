@@ -1,0 +1,8 @@
+{
+    "name": "dealflow",
+    "description": "A freelancers api.",
+    "repository": "https://github.com/ahmedemad242/dealflow-challenge",
+    "scripts": {
+      "postdeploy": "flask db upgrade && flask fake freelancers 200"
+    }
+  }
